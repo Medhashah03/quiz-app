@@ -1,0 +1,61 @@
+<!DOCTYPE html>  
+<html lang="en">  
+{% load static %}  
+
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css"  
+    integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="  
+    crossorigin="anonymous" />  
+  <style>
+    table {
+      padding : 20px;
+      border : 10px ;
+      background-color: aliceblue;
+
+
+    }
+    th {
+      padding : 30px;
+
+    }
+    tr {
+      padding : 30px;
+      
+    }
+    td {
+      padding : 20px;
+      
+    }
+    body {
+      background-color: rgb(148, 205, 205);
+
+    }
+    h1 {
+      color :black;
+    }
+  </style>
+  <title>QUIZ APP</title>  
+</head>  
+  
+<body > <form method = "POST" action="{% url 'check_answer' %}">
+    {% csrf_token %}
+  {% for question in questionSet %}
+   {{question}}
+   <br>
+   {% for answer in question.get_answers %}
+   <br>
+   <input type="radio" name="answer" value="{{ answer.answer }}"> {{ answer.answer }}<br>
+   {% endfor %}
+   <br>
+   {% endfor %} 
+   <button type ="submit" class="btn btn-danger mt-3">Submit</button>
+   </form>
+
+
+
+
+</body>  
+  
+</html> 
