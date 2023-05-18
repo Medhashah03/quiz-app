@@ -27,34 +27,34 @@ def home(request):
 def viewCategories(request):
     return HttpResponse("Hello From Django")
 
-def get_quiz(request):
-    try:
-        # Converting to list to use shuffle on it
-        question_objs = Question.objects.all()
-        if request.GET.get('category'):
-            question_objs = question_objs.filter(category__category_name__icontains=request.GET.get('category'))
+# def get_quiz(request):
+#     try:
+#         # Converting to list to use shuffle on it
+#         question_objs = Question.objects.all()
+#         if request.GET.get('category'):
+#             question_objs = question_objs.filter(category__category_name__icontains=request.GET.get('category'))
     
-        #question_objs= list(question_objs)
+#         #question_objs= list(question_objs)
         
-        data = []
-        #random.shuffle(question_objs)
-        for question_obj in question_objs:
+#         data = []
+#         #random.shuffle(question_objs)
+#         for question_obj in question_objs:
            
-            data.append({
-                "category" : question_obj.category.category_name,
-                "question" : question_obj.question,
-                "marks": question_obj.marks,
-                "answers": question_obj.get_answers()
-            })
+#             data.append({
+#                 "category" : question_obj.category.category_name,
+#                 "question" : question_obj.question,
+#                 "marks": question_obj.marks,
+#                 "answers": question_obj.get_answers()
+#             })
 
-        payload = {'status': True, 'data' : data}
+#         payload = {'status': True, 'data' : data}
 
 
-        return JsonResponse(payload)
+#         return JsonResponse(payload)
 
-    except Exception as e:
-            print(e)
-    return HttpResponse("Somethings Wrong")
+#     except Exception as e:
+#             print(e)
+#     return HttpResponse("Somethings Wrong")
 
 
 
